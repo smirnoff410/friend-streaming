@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>This is the title of the webpage!</title>
+  </head>
+  <body>
+    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+    <img id="image" src = "">
+    <div id="inputForm">
+      <input type="text" id="message" />
+      <input type="button" id="sendBtn" value="Отправить" />
+  </div>
+  <div id="chatroom"></div>
+  </body>
+  <script src="https://unpkg.com/@microsoft/signalr@3.1.0/dist/browser/signalr.min.js"></script>
+  <script>
+    const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("http://localhost:5001/streamHub", {
+              skipNegotiation: true,
+              transport: signalR.HttpTransportType.WebSockets
+            })
+            .build();
+    
+    hubConnection.on("ReceiveMessage", function (data) {
+      let image = document.getElementById("image")
+      image.src = 'data:image/png;base64,' + data
+
+    });
+
+    document.getElementById("sendBtn").addEventListener("click", function (e) {
+        let message = document.getElementById("message").value;
+        hubConnection.invoke("Send");
+    });
+
+    hubConnection.start()
+
+    const startDownload = () => 
+      hubConnection.stream("Streaming")
+        .subscribe({
+          next: (item) => {
+            alert("Hello")
+          },
+          complete: () => {
+            alert("Complete")
+          },
+          error: (err) => {
+            //alert(err)
+            console.log(err)
+          }
+        })
+  </script>
+</html>

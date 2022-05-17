@@ -1,0 +1,15 @@
+﻿.idea
+.vs
+ConsumerTest/bin
+ConsumerTest/obj
+SignalRClient/bin
+SignalRClient/obj
+tests/MainSignalServer/MainSignalClient/bin
+tests/MainSignalServer/MainSignalClient/obj
+tests/MainSignalServer/MainSignalServer/bin
+tests/MainSignalServer/MainSignalServer/obj
+Translation/bin
+Translation/obj
+WebCamClient/bin
+WebCamClient/obj
+WebClient/node_modules

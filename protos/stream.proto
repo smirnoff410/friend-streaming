@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package stream;
+
+service Streamer {
+  rpc GetStreamBytes(stream StreamRequest) returns (google.protobuf.Empty);
+  rpc SayHello(CounterRequest) returns (google.protobuf.Empty);
+}
+
+message StreamRequest {
+  int32 data = 1;
+}
+
+message CounterRequest {
+  bytes data = 1;
+}
