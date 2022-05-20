@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+    translation:
+        hostname: translation
+        container_name: translation
+        build:
+            context: .
+            dockerfile: Translation/Dockerfile
+        ports:
+            - "80:5001"
+            - "81:5002"

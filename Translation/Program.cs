@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.Connections;
 using Translation;
 using Translation.Hubs;
 using Translation.Services;
