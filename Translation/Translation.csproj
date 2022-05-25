@@ -9,11 +9,13 @@
     <ItemGroup>
         <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
         <Protobuf Include="Protos\count.proto" GrpcServices="Server" />
-        <Protobuf Include="..\protos\stream.proto" GrpcServices="Server" />
+        <Protobuf Include="..\protos\stream.proto" GrpcServices="Client" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
       <PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.46.0" />
     </ItemGroup>
 
 </Project>
