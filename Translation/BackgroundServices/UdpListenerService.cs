@@ -17,7 +17,9 @@ public class UdpListenerService : IUdpListenerService
     public async Task StartListener()
     {
         var client = new UdpClient(4100);
-        using var channel = GrpcChannel.ForAddress("http://localhost:50051");
+        var grpcUrl = "http://relay:50051";
+        using var channel = GrpcChannel.ForAddress(grpcUrl);
+        _logger.LogInformation($"Connecting gRPC to {grpcUrl}");
         var grpcClient = new Streamer.StreamerClient(channel);
         using var call = grpcClient.GetStreamBytes();
         while (true)

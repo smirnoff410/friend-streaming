@@ -9,3 +9,13 @@ services:
         ports:
             - "80:5001"
             - "81:5002"
+            - "4100:4100/udp"
+    relay:
+        hostname: relay
+        container_name: relay
+        build:
+            context: .
+            dockerfile: RelayServer/Dockerfile
+        ports:
+            - "50051:50051"
+            - "8082:8082"

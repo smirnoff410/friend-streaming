@@ -61,6 +61,6 @@ function getServer() {
 }
 
 var routeServer = getServer();
-routeServer.bindAsync('localhost:50051', grpc.ServerCredentials.createInsecure(), () => {
+routeServer.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
   routeServer.start();
 });
