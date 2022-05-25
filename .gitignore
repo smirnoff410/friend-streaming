@@ -13,3 +13,4 @@ Translation/obj
 WebCamClient/bin
 WebCamClient/obj
 WebClient/node_modules
+RelayServer/node_modules

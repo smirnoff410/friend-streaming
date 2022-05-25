@@ -30,7 +30,7 @@ namespace ConsumerTest
 				
 				using (var ms = new MemoryStream(data.Buffer))
 				{
-					pictureBox1.Image = new Bitmap(ms);
+					//pictureBox1.Image = new Bitmap(ms);
 					Text = $"Bytes recived: {data.Buffer.Length * sizeof(byte)}";
 				}
 			}
