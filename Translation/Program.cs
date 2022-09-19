@@ -17,20 +17,19 @@ builder.Services.AddSingleton<StreamData>();
 builder.Services.AddHostedService<TranslationBackgroundService>();
 builder.Services.AddScoped<IUdpListenerService, UdpListenerService>();
 
+builder.Services
+    .Configure<UrlSettings>(builder.Configuration.GetSection(UrlSettings.SectionName));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<GreeterService>();
 app.MapGrpcService<CounterService>();
 //app.MapGrpcService<StreamerService>();
-var webSocketOptions = new WebSocketOptions
-{
-    KeepAliveInterval = TimeSpan.FromMinutes(2)
-};
-app.UseWebSockets(webSocketOptions);
 
 app.MapHub<StreamHub>("/streamHub");
 app.MapHub<ChatHub>("/chatHub");
 
 app.MapControllers();
+app.MapGet("/", () => "Hello World!");
 app.Run();
